@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <script>
+        let arr=[];
+        const url="https://fakestoreapi.com/products";
+        const url1="https://fakestoreapi.com/products";
+        fetch(url).then(response=>{
+            if(response.ok){
+                return response.json();
+            }
+            else{
+                return "Data not available";
+            }
+        }).then(data=>{
+            for(let i=0;i<data.length;i++){
+                var a1=document.createElement("div");
+                a1.setAttribute("class","card");
+                a1.setAttribute("style","width: 18rem");
+                var b1=document.createElement("img");
+                b1.setAttribute("class","card-img-top");
+                b1.setAttribute("src",data[i].image);
+                var c1=document.createElement("div");
+                c1.setAttribute("class","card-body");
+                var d1=document.createElement("h5");
+                d1.setAttribute("class","card-title");
+                d1.innerText=data[i].category;
+                var e1=document.createElement("p");
+                e1.innerHTML=data[i].description;
+                e1.setAttribute("class","card-text");
+                var f1=document.createElement("a");
+                f1.setAttribute("class","btn btn-primary");
+                f1.innerText="Buy Now"
+                c1.append(d1,e1,f1);
+                a1.append(b1,c1);
+                document.body.appendChild(a1);
+            }
+            
+        });
+        console.log(arr);
+        let arr1=[];
+        async function exp(){
+            let response= await fetch(url1);
+            let data=await response.json();
+            data.forEach(val=>arr1.push(val));
+        }
+        exp().then(()=>{
+            console.log(arr1);
+        }); 
+        console.log(arr.length);
+        console.log(arr1.length);
+    </script>
+</body>
+</html>
